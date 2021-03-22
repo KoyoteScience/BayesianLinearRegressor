@@ -13,5 +13,5 @@ Given a set of ![](https://latex.codecogs.com/svg.latex?n_\text{obs}) observatio
 
 * ![](https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}\oplus\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{X}_{n}\oplus\mathbf{y}_{n}+(\mathbf{X}\oplus\mathbf{y})^{\text{T}}\mathbf{X}\oplus\mathbf{y})
 * ![](https://latex.codecogs.com/svg.latex?R_{n+n_{\text{obs}}}=R_{n}+\mathbf{y}^{\text{T}}\mathbf{y}-\mathbf{\mu}_{n+n_{\text{obs}}}^\text{T}\mathbf{\Sigma}_{n+n_{\text{obs}}}^{-1}\mathbf{\mu}_{n+n_{\text{obs}}}+\mathbf{\mu}_{n}^\text{T}\mathbf{\Sigma}_{n}^{-1}\mathbf{\mu}_{n})
-* ![](https://latex.codecogs.com/svg.latex?\mathbf{\Sigma}_{n+n_{\text{obs}}}\oplus\mathbf{y_{n+n_{\text{obs}}}=\mathbf{X_{n}\oplus\mathbf{y_{n}}+(\mathbf{X}\oplus\mathbf{y})^{\text{T}}\mathbf{X}\oplus\mathbf{y})
+* ![](https://latex.codecogs.com/svg.latex?\mathbf{\Sigma}_{n}=(\mathbf{X}^\text{T}\mathbf{X}+\lambda\mathbf{I})^{-1})
 
