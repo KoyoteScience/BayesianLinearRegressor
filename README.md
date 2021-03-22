@@ -1,6 +1,6 @@
 # BayesianLinearRegressor
 
-A minimal (<200 lines of code) and complete Python implementation of a Bayesian Linear Regression / Bayesian Linear Regressor, made to mimic the relevant methods in statsmodels and sci-kit learn. No parameters need to be set, they are all learned on the fly, and this includes the noise parameter, i.e., the sum of squared residuals divided by the number of degrees of freedom.
+A minimal (<200 lines of code) and complete Python implementation of a Bayesian Linear Regression / Bayesian Linear Regressor, made to mimic the relevant methods in statsmodels and sci-kit learn. No parameters need to be set, although the ridge regularization constant is available to change beyond the default value. All internal parameters are learned in an online/streaming/incremental fashion, including the noise parameter, i.e., the sum of squared residuals divided by the number of degrees of freedom.
 
 This reposity covers two files: **bayesian_linear_regressor.py** and **test_suite.py**. They work with the BanditoAPI (https://github.com/KoyoteScience/BanditoAPI) to test different approaches to performing a linear regression with correct uncertainties:
 
