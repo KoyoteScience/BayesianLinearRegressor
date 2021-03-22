@@ -15,7 +15,7 @@ Given a set of ![](https://latex.codecogs.com/svg.latex?n_\text{obs}) observatio
   * <img src="https://latex.codecogs.com/svg.latex?(\mathbf{X}^\text{T}\mathbf{X})_{n+n_{\text{obs}}}=(\mathbf{X}^\text{T}\mathbf{X})_{n}+\mathbf{X}^{\text{T}}\mathbf{X}">
   * <img src="https://latex.codecogs.com/svg.latex?(\mathbf{y}^\text{T}\mathbf{y})_{n+n_{\text{obs}}}=(\mathbf{y}^\text{T}\mathbf{y})_{n}+\mathbf{y}^{\text{T}}\mathbf{y}">
   * <img src="https://latex.codecogs.com/svg.latex?(\mathbf{X}^\text{T}\mathbf{y})_{n+n_{\text{obs}}}=(\mathbf{X}^\text{T}\mathbf{y})_{n}+\mathbf{X}^{\text{T}}\mathbf{y}">
-* <img src="https://latex.codecogs.com/svg.latex?R_{n+n_{\text{obs}}}=R_{n}+\mathbf{y}^{\text{T}}\mathbf{y}-\mathbf{\mu}_{n+n_{\text{obs}}}^\text{T}\mathbf{\Sigma}_{n+n_{\text{obs}}}^{-1}\mathbf{\mu}_{n+n_{\text{obs}}}+\mathbf{\beta}_{n}^\text{T}\mathbf{\Sigma}_{n}^{-1}\mathbf{\beta}_{n}">
+* <img src="https://latex.codecogs.com/svg.latex?R_{n+n_{\text{obs}}}=R_{n}+\mathbf{y}^{\text{T}}\mathbf{y}-\mathbf{\beta}_{n+n_{\text{obs}}}^\text{T}\mathbf{\Sigma}_{n+n_{\text{obs}}}^{-1}\mathbf{\beta}_{n+n_{\text{obs}}}+\mathbf{\beta}_{n}^\text{T}\mathbf{\Sigma}_{n}^{-1}\mathbf{\beta}_{n}">
 * <img src="https://latex.codecogs.com/svg.latex?\mathbf{\Sigma}_{n}^{-1}=\mathbf{X}_{n}^\text{T}\mathbf{X}_{n}+\lambda\mathbf{I}">
 * <img src="https://latex.codecogs.com/svg.latex?\mathbf{\beta}_{n}=\mathbf{\Sigma}_{n}\mathbf{X}_{n}^\text{T}\mathbf{y}">
 
