@@ -38,6 +38,6 @@ Amazingly, the update rules only have to be slightly tweaked to allow us to "unl
   * <img src="https://latex.codecogs.com/svg.latex?\mathbf{y}_{n+n_{\text{obs}}}^\text{T}\mathbf{y_{n+n_{\text{obs}}}=\mathbf{y}_{n}^\text{T}\mathbf{y}-\mathbf{y}^{\text{T}}\mathbf{y}">
   * <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{y}_{n}-\mathbf{X}^{\text{T}}\mathbf{y}">
 * <img src="https://latex.codecogs.com/svg.latex?R_{n+n_{\text{obs}}}=R_{n}-\mathbf{y}^{\text{T}}\mathbf{y}-\mathbf{\hat{\beta}}_{n+n_{\text{obs}}}^\text{T}\mathbf{\Sigma}_{n+n_{\text{obs}}}^{-1}\mathbf{\hat{\beta}}_{n+n_{\text{obs}}}+\mathbf{\hat{\beta}}_{n}^\text{T}\mathbf{\Sigma}_{n}^{-1}\mathbf{\hat{\beta}}_{n}">
-* <img src="https://latex.codecogs.com/svg.latex?n_{\text{d.o.f.}}=n_{\text{d.o.f.}} - 1">
+* <img src="https://latex.codecogs.com/svg.latex?n_{\text{d.o.f.}}=n_{\text{d.o.f.}}-1">
 
 
