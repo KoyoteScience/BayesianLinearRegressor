@@ -1,5 +1,7 @@
 # BayesianLinearRegressor
 
+Python implementation of a Bayesian Linear Regression / Bayesian Linear Regressor. 
+
 This reposity covers two files: **bayesian_linear_regressor.py** and **test_suite.py**. They work with the BanditoAPI (https://github.com/KoyoteScience/BanditoAPI) to test different approaches to performing a linear regression with correct uncertainties:
 
 * Using Linear Algebra Identities (doesn't support online/streaming/incrementals)
