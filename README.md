@@ -9,7 +9,7 @@ This reposity covers two files: **bayesian_linear_regressor.py** and **test_suit
 * Using the Bandito API (supports online/streaming/incremental)
 * Using the included BayesianLinearRegressor module (supports online/streaming/incremental)
 
-At Koyote Science, LLC, we use an even more stringent set of integration tests to ensure the accuracy and efficiency of Bandito.
+At Koyote Science, LLC, we used this code as the basis for an even more stringent set of integration tests we use to ensure the accuracy and efficiency of Bandito.
 
 Given a set of ![](https://latex.codecogs.com/svg.latex?n_\text{obs}) observations with values ![](https://latex.codecogs.com/svg.latex?\mathbf{X}) and ![](https://latex.codecogs.com/svg.latex?\mathbf{y}), we concatenate these arrays to yield the moment matrix ![](https://latex.codecogs.com/svg.latex?\mathbf{M}=\mathbf{X}\oplus\mathbf{y}). Thus after ![](https://latex.codecogs.com/svg.latex?n) observations, and adding in the ![](https://latex.codecogs.com/svg.latex?n_\text{obs}) new observations, and setting ![](https://latex.codecogs.com/svg.latex?R) as the sum of squared residuals, ![](https://latex.codecogs.com/svg.latex?\mathbf{\hat{\beta}}) as the model coefficient means, ![](https://latex.codecogs.com/svg.latex?\Sigma) as the parameter covariance matrix, and ![](https://latex.codecogs.com/svg.latex?\lambda) as the ridge regularization constant (also known as the Tikhonov regularization constant, and we generally set it to 1e-6 expecting order unity in our input and output value distributions), the update rules are as follows:
 
