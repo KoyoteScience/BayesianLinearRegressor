@@ -4,8 +4,8 @@ This reposity covers two files: **bayesian_linear_regressor.py** and **test_suit
 
 * Using Linear Algebra Identities (which doesn't scale with the number of training rows)
 * Using the statsmodels library (as a ground truth, and which also doesn't scale with the number of training rows)
-* Using the Bandito API (online/incremental learning/updating)
-* Using the included BayesianLinearRegressor module (online/incremtal learning/updating)
+* Using the Bandito API (online/incremental/streaming learning/updating)
+* Using the included BayesianLinearRegressor module (online/incremtal/streaming learning/updating)
 
 At Koyote Science, LLC, we use an even more stringent set of integration tests to ensure the accuracy and efficiency of Bandito.
 
@@ -19,7 +19,7 @@ Given a set of ![](https://latex.codecogs.com/svg.latex?n_\text{obs}) observatio
 * <img src="https://latex.codecogs.com/svg.latex?\mathbf{\Sigma}_{n}^{-1}=\mathbf{X}_{n}^\text{T}\mathbf{X}_{n}+\lambda\mathbf{I}">
 * <img src="https://latex.codecogs.com/svg.latex?\mathbf{\hat{\beta}}_{n}=\mathbf{\Sigma}_{n}\mathbf{X}_{n}^\text{T}\mathbf{y}">
 
-When we sample from the distibutions of our model parameters ![](https://latex.codecogs.com/svg.latex?\mathbf{\beta}) using a multivariate normal with means ![](https://latex.codecogs.com/svg.latex?\mathbf{\hat{\beta}}) and covariance matrix ![](https://latex.codecogs.com/svg.latex?\mathbf{\Sigma}R/n_\text{d.o.f.}) where ![](https://latex.codecogs.com/svg.latex?n_{\text{d.o.f.}}) is the number of degrees of freedom, or the number of updates ![](https://latex.codecogs.com/svg.latex?n) minus the number of features. The update rules for the sum of squared residuals arises from linear algebra identities and the definition <img src="https://latex.codecogs.com/svg.latex?R_{n}=(\mathbf{y}-\mathbf{\hat{\beta}}^\text{T}\mathbf{X})^\text{T}_{n}(\mathbf{y}-\mathbf{\hat{\beta}}^\text{T}\mathbf{X})_{n}"> 
+When we sample from the distibutions of our model parameters ![](https://latex.codecogs.com/svg.latex?\mathbf{\beta}) using a multivariate normal with means ![](https://latex.codecogs.com/svg.latex?\mathbf{\hat{\beta}}) and covariance matrix ![](https://latex.codecogs.com/svg.latex?\mathbf{\Sigma}R/n_\text{d.o.f.}) where ![](https://latex.codecogs.com/svg.latex?n_{\text{d.o.f.}}) is the number of degrees of freedom, or the number of updates ![](https://latex.codecogs.com/svg.latex?n) minus ![](https://latex.codecogs.com/svg.latex?n_\text{features})  the number of features. The update rules for the sum of squared residuals arises from linear algebra identities and the definition <img src="https://latex.codecogs.com/svg.latex?R_{n}=(\mathbf{y}-\mathbf{\hat{\beta}}^\text{T}\mathbf{X})^\text{T}_{n}(\mathbf{y}-\mathbf{\hat{\beta}}^\text{T}\mathbf{X})_{n}"> 
 
-Using these
+Using these update rules, we can train BayesianLinearRegressor in a streaming/online/incremental fashion, meaning that at no point do we need to store all training data in memory, and we achieve the same results as using linear algebra identities or tested code like the sklearn and statsmodels modules, and with the full covariance matrix of the parameters (which only statsmodels offers, at a substantial computational cost), which allows the BayesianLinearRegressor to be used in a bandit setting. Storage and computational requirements for BayesianLinearRegressor are <img src="https://latex.codecogs.com/svg.latex?O(n_\text{features}^2)"> and  <img src="https://latex.codecogs.com/svg.latex?O(nn_\text{features}^3)">.
 
