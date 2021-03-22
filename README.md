@@ -30,3 +30,16 @@ When we sample from the distibutions of our model parameters ![](https://latex.c
 
 Using these update rules, we can train BayesianLinearRegressor in a streaming/online/incremental fashion, meaning that at no point do we need to store more than one row of training data in memory, and we achieve the same results as using linear algebra identities or tested code like the scikit-learn and statsmodels modules, and with the full covariance matrix of the parameters (which only statsmodels offers, at a substantial computational cost). These properties make the BayesianLinearRegressor ideal for the bandit setting. Storage and computational requirements for BayesianLinearRegressor are <img src="https://latex.codecogs.com/svg.latex?O(n_\text{features}^2)"> and  <img src="https://latex.codecogs.com/svg.latex?O(n\times&space;n_\text{features}^3)"> respectively.
 
+Amazingly, the update rules only have to be slightly tweaked to allow us to "unlearn" data, making it easy to create a trailing-window linear regression, keeping a log of the trailing input and output data, to incrementally unlearn data after a desired expiration period. The update rules for *unlearning* are:
+
+
+* <img src="https://latex.codecogs.com/svg.latex?\mathbf{M}_{n+n_{\text{obs}}}=\mathbf{M}_{n}-\mathbf{M}"> 
+* which is equivalent to:
+  * <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{X}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{X}_{n}-\mathbf{X}^{\text{T}}\mathbf{X}">
+  * <img src="https://latex.codecogs.com/svg.latex?\mathbf{y}_{n+n_{\text{obs}}}^\text{T}\mathbf{y_{n+n_{\text{obs}}}=\mathbf{y}_{n}^\text{T}\mathbf{y}-\mathbf{y}^{\text{T}}\mathbf{y}">
+  * <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{y}_{n}-\mathbf{X}^{\text{T}}\mathbf{y}">
+* <img src="https://latex.codecogs.com/svg.latex?R_{n+n_{\text{obs}}}=R_{n}+\mathbf{y}^{\text{T}}\mathbf{y}-\mathbf{\hat{\beta}}_{n+n_{\text{obs}}}^\text{T}\mathbf{\Sigma}_{n+n_{\text{obs}}}^{-1}\mathbf{\hat{\beta}}_{n+n_{\text{obs}}}+\mathbf{\hat{\beta}}_{n}^\text{T}\mathbf{\Sigma}_{n}^{-1}\mathbf{\hat{\beta}}_{n}">
+* <img src="https://latex.codecogs.com/svg.latex?\mathbf{\Sigma}_{n}^{-1}=\mathbf{X}_{n}^\text{T}\mathbf{X}_{n}+\lambda\mathbf{I}">
+* <img src="https://latex.codecogs.com/svg.latex?\mathbf{\hat{\beta}}_{n}=\mathbf{\Sigma}_{n}\mathbf{X}_{n}^\text{T}\mathbf{y}">
+
+
