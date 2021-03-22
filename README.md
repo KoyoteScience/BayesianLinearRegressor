@@ -12,6 +12,7 @@ At Koyote Science, LLC, we use an even more stringent set of integration tests t
 Given a set of ![](https://latex.codecogs.com/svg.latex?n_\text{obs}) observations with values ![](https://latex.codecogs.com/svg.latex?\mathbf{X}) and ![](https://latex.codecogs.com/svg.latex?\mathbf{y}), we concatenate these arrays to yield ![](https://latex.codecogs.com/svg.latex?\mathbf{X}\oplus\mathbf{y}). Thus after ![](https://latex.codecogs.com/svg.latex?n) observations, and adding in the ![](https://latex.codecogs.com/svg.latex?n_\text{obs}) new observations, the update rules are as follows:
 
 * <img src="https://latex.codecogs.com/svg.latex?(\mathbf{X}_{n+n_{\text{obs}}}\oplus\mathbf{y}_{n+n_{\text{obs}}})^\text{T}(\mathbf{X}_{n+n_{\text{obs}}}\oplus\mathbf{y}_{n+n_{\text{obs}}})=(\mathbf{X}_{n}\oplus\mathbf{y}_{n})^\text{T}(\mathbf{X}_{n}\oplus\mathbf{y}_{n})+(\mathbf{X}\oplus\mathbf{y})^{\text{T}}(\mathbf{X}\oplus\mathbf{y})">
+ 
   * equivalent to <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{X}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{X}_{n}+\mathbf{X}^{\text{T}}\mathbf{X}">
   * equivalent to <img src="https://latex.codecogs.com/svg.latex?\mathbf{y}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{y}_{n}^\text{T}\mathbf{y}_{n}+\mathbf{y}^{\text{T}}\mathbf{y}">
   * equivalent to <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{y}_{n}+\mathbf{X}^{\text{T}}\mathbf{y}">
