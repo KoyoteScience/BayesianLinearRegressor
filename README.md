@@ -4,8 +4,8 @@ This reposity covers two files: **bayesian_linear_regressor.py** and **test_suit
 
 * Using Linear Algebra Identities (which doesn't scale with the number of training rows)
 * Using the statsmodels library (as a ground truth, and which also doesn't scale with the number of training rows)
-* Using the Bandito API (online/incremental/streaming learning/updating)
-* Using the included BayesianLinearRegressor module (online/incremtal/streaming learning/updating)
+* Using the Bandito API (online/streaming/incremental)
+* Using the included BayesianLinearRegressor module (online/streaming/incremental)
 
 At Koyote Science, LLC, we use an even more stringent set of integration tests to ensure the accuracy and efficiency of Bandito.
 
