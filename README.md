@@ -30,7 +30,7 @@ When we sample from the distibutions of our model parameters ![](https://latex.c
 
 Using these update rules, we can train BayesianLinearRegressor in a streaming/online/incremental fashion, meaning that at no point do we need to store more than one row of training data in memory, and we achieve the same results as using linear algebra identities or tested code like the scikit-learn and statsmodels modules, and with the full covariance matrix of the parameters (which only statsmodels offers, at a substantial computational cost). These properties make the BayesianLinearRegressor ideal for the bandit setting. Storage and computational requirements for BayesianLinearRegressor are <img src="https://latex.codecogs.com/svg.latex?O(n_\text{features}^2)"> and  <img src="https://latex.codecogs.com/svg.latex?O(n\times&space;n_\text{features}^3)"> respectively.
 
-Amazingly, the update rules only have to be slightly tweaked to allow us to "unlearn" data, making it possible to create a trailing-window linear regression by a log of the trailing input and output data and incrementally unlearning and removing the tail end of the log after a desired expiration period. The changed update rules for *unlearning* are:
+Amazingly, the update rules only have to be slightly tweaked to allow us to "unlearn" data, making it possible to create a trailing-window linear regression, by keeping a log of the trailing input and output data and incrementally unlearning and removing the tail end of the log after a desired expiration period. The changed update rules for *unlearning* are:
 
 * <img src="https://latex.codecogs.com/svg.latex?\mathbf{M}_{n+n_{\text{obs}}}=\mathbf{M}_{n}-\mathbf{M}"> 
 * which is equivalent to:
