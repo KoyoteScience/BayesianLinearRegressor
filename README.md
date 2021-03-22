@@ -8,7 +8,7 @@ For these reasons, we provide a minimal (<200 lines of code) and complete Pytho
 
 This reposity covers two files: **bayesian_linear_regressor.py** and **test_suite.py**. They work with the BanditoAPI (https://github.com/KoyoteScience/BanditoAPI) to test different approaches to performing a linear regression with correct uncertainties:
 
-* Using Linear Algebra Identities (doesn't support online/streaming/incrementals)
+* Using linear algebra identities (doesn't support online/streaming/incrementals)
 * Using the statsmodels library (as a ground truth, and doesn't support online/streaming/incrementals)
 * Using the Bandito API (supports online/streaming/incremental)
 * Using the included BayesianLinearRegressor module (supports online/streaming/incremental)
