@@ -19,7 +19,7 @@ At Koyote Science, LLC, we used this code as the basis for larger and more strin
 
 Given a set of ![](https://latex.codecogs.com/svg.latex?n_\text{obs}) observations with values ![](https://latex.codecogs.com/svg.latex?\mathbf{X}) and ![](https://latex.codecogs.com/svg.latex?\mathbf{y}), we concatenate these arrays to yield the moment matrix ![](https://latex.codecogs.com/svg.latex?\mathbf{M}=\mathbf{X}\oplus\mathbf{y}). Thus after ![](https://latex.codecogs.com/svg.latex?n) observations, we set ![](https://latex.codecogs.com/svg.latex?R_{n}) as the sum of squared residuals, ![](https://latex.codecogs.com/svg.latex?\mathbf{\hat{\beta}}_{n}) as the model coefficient means, ![](https://latex.codecogs.com/svg.latex?\Sigma_{n}) as the parameter covariance matrix, and ![](https://latex.codecogs.com/svg.latex?\lambda) as the ridge regularization constant (also known as the Tikhonov regularization constant, and we generally set it to 1e-6 expecting order unity in our input and output value distributions). The update rules are then as follows:
 
-* <img src="https://latex.codecogs.com/svg.latex?\mathbf{M}_{n+n_{\text{obs}}}=\mathbf{M}_{n}+\mathbf{M}"> 
+* <img src="https://latex.codecogs.com/svg.latex?\mathbf{M}_{n+n_{\text{obs}}}=\mathbf{M}_{n}+\mathbf{M}^\text{T}\mathbf{M}"> 
 * which is equivalent to:
   * <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{X}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{X}_{n}+\mathbf{X}^{\text{T}}\mathbf{X}">
   * <img src="https://latex.codecogs.com/svg.latex?\mathbf{y}_{n+n_{\text{obs}}}^\text{T}\mathbf{y_{n+n_{\text{obs}}}=\mathbf{y}_{n}^\text{T}\mathbf{y}+\mathbf{y}^{\text{T}}\mathbf{y}">
@@ -41,5 +41,13 @@ The update rules only have to be slightly tweaked to allow us to "unlearn" data,
   * <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{y}_{n}-\mathbf{X}^{\text{T}}\mathbf{y}">
 * <img src="https://latex.codecogs.com/svg.latex?R_{n+n_{\text{obs}}}=R_{n}-\mathbf{y}^{\text{T}}\mathbf{y}-\mathbf{\hat{\beta}}_{n+n_{\text{obs}}}^\text{T}\mathbf{\Sigma}_{n+n_{\text{obs}}}^{-1}\mathbf{\hat{\beta}}_{n+n_{\text{obs}}}+\mathbf{\hat{\beta}}_{n}^\text{T}\mathbf{\Sigma}_{n}^{-1}\mathbf{\hat{\beta}}_{n}">
 * <img src="https://latex.codecogs.com/svg.latex?(n+n_{\text{obs}})_{\text{d.o.f.}}=n_{\text{d.o.f.}}-n_\text{obs}">
+
+When including data weights to our training procedure, which occurs when implementing inverse propensity score weighting in the bandit setting in order to account for the fact that we use models to select actions which biases our data in a sequential decision system, all we have to do is adjust the moment matrix update rules. We use the weight matrix <img src="https://latex.codecogs.com/svg.latex?\mathbf{W}"> which is a diagonal matrix of size <img src="https://latex.codecogs.com/svg.latex?n_\text{obs}"> with the weight for each training on the corresponding diagonal entry. This gives us the update rules:
+
+* <img src="https://latex.codecogs.com/svg.latex?\mathbf{M}_{n+n_{\text{obs}}}=\mathbf{M}_{n}+\mathbf{M}^\text{T}\mathbf{W}\mathbf{M}"> 
+* which is equivalent to:
+  * <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{X}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{X}_{n}+\mathbf{X}^{\text{T}}\mathbf{W}\mathbf{X}">
+  * <img src="https://latex.codecogs.com/svg.latex?\mathbf{y}_{n+n_{\text{obs}}}^\text{T}\mathbf{y_{n+n_{\text{obs}}}=\mathbf{y}_{n}^\text{T}\mathbf{y}+\mathbf{y}^{\text{T}}\mathbf{W}\mathbf{y}">
+  * <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{y}_{n}+\mathbf{X}^{\text{T}}\mathbf{W}\mathbf{y}">
 
 
