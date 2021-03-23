@@ -21,11 +21,12 @@ class BayesLinearRegressor:
         self.moment_matrix = np.eye(number_of_features + 2) * 0.0 # + 2 for the intercept and the output
         self.residual_sum_squares = 0
         
-    def partial_fit(self, X, Y, reverse=False):
+    def partial_fit(self, X, Y, W=None, reverse=False):
         '''
         The online updating rules
         :param X: Input feature vector(s) as 2D numpy array 
         :param Y: Input output values as 1D numpy array
+        :param W: Data weights (relative to unity) as a 1D numpy array
         :param reverse: Boolean, True means that we "unfit" the training rows, otherwise acts as normal
         :return: None
         '''
@@ -40,14 +41,19 @@ class BayesLinearRegressor:
         # Here we concatenate the intercept input value (constant 1), the input vector, and the output value:
         rank_1_update_vector = np.array([[1] + row + output for row, output in zip(X.tolist(), Y.tolist())])
         
-        if not reverse:
-            self.moment_matrix += rank_1_update_vector.T @ rank_1_update_vector
-            moment_of_Y_update_term = Y.T @ Y
-            number_of_updates_update_term = 1
+        if W is None:
+            moment_matrix_update_term = rank_1_update_vector.T @ rank_1_update_vector
         else:
-            self.moment_matrix -= rank_1_update_vector.T @ rank_1_update_vector
+            moment_matrix_update_term = rank_1_update_vector.T @ np.diag(W.tolist()) @ rank_1_update_vector
+            
+        if not reverse:
+            self.moment_matrix += moment_matrix_update_term
+            moment_of_Y_update_term = Y.T @ Y
+            self.number_of_updates += 1
+        else:
+            self.moment_matrix -= moment_matrix_update_term
             moment_of_Y_update_term = -Y.T @ Y
-            number_of_updates_update_term = -1
+            self.number_of_updates -= 1
             
         moment_of_X = self.moment_matrix[:-1, :-1]
         moment_of_X_and_Y = self.moment_matrix[:-1, -1]
@@ -55,7 +61,6 @@ class BayesLinearRegressor:
         covariance_matrix = np.linalg.inv(inverted_covariance_matrix)
         
         self.beta_means = covariance_matrix @ moment_of_X_and_Y
-        self.number_of_updates += number_of_updates_update_term
         self.residual_sum_squares += (
                 moment_of_Y_update_term -
                 self.beta_means.T @ inverted_covariance_matrix @ self.beta_means +
