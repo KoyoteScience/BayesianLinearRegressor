@@ -4,7 +4,7 @@ Linear regressors are the workhorse of data science and machine learning. Nearly
 
 However, our efforts to find a pre-made reliable package in Python to implement a Bayesian Linear Regressor came up short. Scikit-learn is the most trustworthy and tested, but doesn't offer an estimate of the parameter covariance matrix, meaning that we lose prediction uncertainties which are critical in the bandit setting. Statsmodels offers these uncertainty estimates, but is far slower. Both packages store all the training data in memory. Other repositories on Github that copy the key equations from Christopher Bishop's "Pattern Recognition and Machine Learning" require that the noise parameter (the sum of squared residuals) be added as a tunable hyper parameter because that's what he did, and it breaks the ability to generalize those packages to new data sets.
 
-# BayesianLinearRegressor
+# BayesLinearRegressor
 
 For these reasons, we provide a minimal (<200 lines of code) and complete Python implementation of a Bayesian Linear Regression / Bayesian Linear Regressor, made to mimic the relevant methods in statsmodels and scikit-learn. No parameters need to be set, although the ridge regularization constant is available to change beyond the default value. All internal parameters are learned in an online/streaming/incremental fashion, including the noise parameter, i.e., the sum of squared residuals divided by the number of degrees of freedom.
 
