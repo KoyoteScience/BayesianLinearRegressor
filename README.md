@@ -57,4 +57,8 @@ When including data weights to our training procedure, all we have to do is adju
   * <img src="https://latex.codecogs.com/svg.latex?\mathbf{y}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{y}_{n}^\text{T}\mathbf{y}_{n}+\mathbf{y}^{\text{T}}\mathbf{W}\mathbf{y}">
   * <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{y}_{n}+\mathbf{X}^{\text{T}}\mathbf{W}\mathbf{y}">
 
+## Diagonal Matrix Simplification
 
+In the case of extremely large <img src="https://latex.codecogs.com/svg.latex?n_\text{features}">, a further simplification can be made whereby we assume the covariance matrix is diagonal. This amounts to assuming that <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}^\text{T}\mathbf{X}"> is also diagonal. This means that we can replace the <img src="https://latex.codecogs.com/svg.latex?O(n_\text{features}^2)"> update rule for the moment matrix with an <img src="https://latex.codecogs.com/svg.latex?O(n_\text{features})"> update rule, as well as replace the <img src="https://latex.codecogs.com/svg.latex?O(n_\text{features}^3)"> matrix inversion with <img src="https://latex.codecogs.com/svg.latex?O(n_\text{features})"> diagonal inversion.
+
+Storage and computational requirements in this case are <img src="https://latex.codecogs.com/svg.latex?O(n_\text{features})"> and <img src="https://latex.codecogs.com/svg.latex?O(n\times&space;n_\text{features})"> respectively.
