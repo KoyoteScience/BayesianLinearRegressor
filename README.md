@@ -1,6 +1,6 @@
 # BayesianLinearRegression
 
-### Example Usage:
+## Example Usage:
 
 ```python
     bayes_linear_regression = BayesLinearRegressor(n_features)
