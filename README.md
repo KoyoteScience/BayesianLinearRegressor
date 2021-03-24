@@ -1,4 +1,6 @@
-# Introduction
+# BayesianLinearRegression
+
+## Introduction
 
 Linear regressors are the workhorse of data science and machine learning. Nearly every problem can use a linear regression as a baseline, and they can be used in tandem with other algorithms, such as deep learning neural networks and gradient-boosted trees, to add prediction uncertainties and to provide an ideal balance of computational efficiency and interpretability. This is in large part due to the fact that linear regressions are shallow neural networks -- literally, neural nets with only one layer. This limitation means that their solutions are analytically solvable, making linear regressions ridiculously efficient and easy to work with, and offering us access to exact prediction uncertainties without needing to resort to expensive Bayesian inferencing techniques. Either as a standard candle to confirm other Bayesian engines such as bootstrapping for advanced models, or as the engine and model itself, these properties make the Bayesian linear regressor a critical element in applications for sequential decision processes like games, recommendation systems, and interface optimization.
 
