@@ -4,7 +4,7 @@ Linear regressors are the workhorse of data science and machine learning. Nearly
 
 However, our efforts to find a pre-made reliable package in Python to implement a Bayesian Linear Regressor came up short. Scikit-learn is the most trustworthy and tested, but doesn't offer an estimate of the parameter covariance matrix, meaning that we lose prediction uncertainties which are critical in the bandit setting. Statsmodels offers these uncertainty estimates, but is far slower. Both packages store all the training data in memory. Other repositories on Github that copy the key equations from Christopher Bishop's "Pattern Recognition and Machine Learning" require that the noise parameter (the sum of squared residuals) be added as a tunable hyper parameter because that's what he did, and it breaks the ability to generalize those packages to new data sets.
 
-# BayesLinearRegressor
+## Description of Repository
 
 For these reasons, we provide a minimal (<200 lines of code) and complete Python implementation of a Bayesian Linear Regression / Bayesian Linear Regressor, made to mimic the relevant methods in statsmodels and scikit-learn. No parameters need to be set, although the ridge regularization constant is available to change beyond the default value. All internal parameters are learned in an online/streaming/incremental fashion, including the noise parameter, i.e., the sum of squared residuals divided by the number of degrees of freedom.
 
@@ -17,7 +17,7 @@ This reposity covers two files: **bayesian_linear_regressor.py** and **test_suit
 
 At Koyote Science, LLC, we used this code as the basis for larger and more stringent integration tests we use to ensure the accuracy and efficiency of Bandito.
 
-## Update Rules
+## Update Rules for Bayesian Linear Regression
 Given a set of ![](https://latex.codecogs.com/svg.latex?n_\text{obs}) observations with values ![](https://latex.codecogs.com/svg.latex?\mathbf{X}) and ![](https://latex.codecogs.com/svg.latex?\mathbf{y}), we concatenate these arrays to yield the moment matrix ![](https://latex.codecogs.com/svg.latex?\mathbf{M}=\mathbf{X}\oplus\mathbf{y}). Thus after ![](https://latex.codecogs.com/svg.latex?n) observations, we set ![](https://latex.codecogs.com/svg.latex?R_{n}) as the sum of squared residuals, ![](https://latex.codecogs.com/svg.latex?\mathbf{\hat{\beta}}_{n}) as the model coefficient means, ![](https://latex.codecogs.com/svg.latex?\Sigma_{n}) as the parameter covariance matrix, and ![](https://latex.codecogs.com/svg.latex?\lambda) as the ridge regularization constant (also known as the Tikhonov regularization constant, and we generally set it to 1e-6 expecting order unity in our input and output value distributions). The update rules are then as follows:
 
 * <img src="https://latex.codecogs.com/svg.latex?\mathbf{M}_{n+n_{\text{obs}}}=\mathbf{M}_{n}+\mathbf{M}^\text{T}\mathbf{M}"> 
