@@ -25,7 +25,7 @@ Given a set of ![](https://latex.codecogs.com/svg.latex?n_\text{obs}) observatio
 * <img src="https://latex.codecogs.com/svg.latex?\mathbf{M}_{n+n_{\text{obs}}}=\mathbf{M}_{n}+\mathbf{M}^\text{T}\mathbf{M}"> 
 * which is equivalent to:
   * <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{X}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{X}_{n}+\mathbf{X}^{\text{T}}\mathbf{X}">
-  * <img src="https://latex.codecogs.com/svg.latex?\mathbf{y}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{y}_{n}^\text{T}\mathbf{y}+\mathbf{y}^{\text{T}}\mathbf{y}">
+  * <img src="https://latex.codecogs.com/svg.latex?\mathbf{y}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{y}_{n}^\text{T}\mathbf{y}_{n}+\mathbf{y}^{\text{T}}\mathbf{y}">
   * <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{y}_{n}+\mathbf{X}^{\text{T}}\mathbf{y}">
 * <img src="https://latex.codecogs.com/svg.latex?R_{n+n_{\text{obs}}}=R_{n}+\mathbf{y}^{\text{T}}\mathbf{y}-\mathbf{\hat{\beta}}_{n+n_{\text{obs}}}^\text{T}\mathbf{\Sigma}_{n+n_{\text{obs}}}^{-1}\mathbf{\hat{\beta}}_{n+n_{\text{obs}}}+\mathbf{\hat{\beta}}_{n}^\text{T}\mathbf{\Sigma}_{n}^{-1}\mathbf{\hat{\beta}}_{n}">
 * <img src="https://latex.codecogs.com/svg.latex?\mathbf{\Sigma}_{n}^{-1}=\mathbf{X}_{n}^\text{T}\mathbf{X}_{n}+\lambda\mathbf{I}">
@@ -41,7 +41,7 @@ The update rules only have to be slightly tweaked to allow us to "unlearn" data,
 * <img src="https://latex.codecogs.com/svg.latex?\mathbf{M}_{n+n_{\text{obs}}}=\mathbf{M}_{n}-\mathbf{M}"> 
 * which is equivalent to:
   * <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{X}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{X}_{n}-\mathbf{X}^{\text{T}}\mathbf{X}">
-  * <img src="https://latex.codecogs.com/svg.latex?\mathbf{y}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{y}_{n}^\text{T}\mathbf{y}-\mathbf{y}^{\text{T}}\mathbf{y}">
+  * <img src="https://latex.codecogs.com/svg.latex?\mathbf{y}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{y}_{n}^\text{T}\mathbf{y}_{n}-\mathbf{y}^{\text{T}}\mathbf{y}">
   * <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{y}_{n}-\mathbf{X}^{\text{T}}\mathbf{y}">
 * <img src="https://latex.codecogs.com/svg.latex?R_{n+n_{\text{obs}}}=R_{n}-\mathbf{y}^{\text{T}}\mathbf{y}-\mathbf{\hat{\beta}}_{n+n_{\text{obs}}}^\text{T}\mathbf{\Sigma}_{n+n_{\text{obs}}}^{-1}\mathbf{\hat{\beta}}_{n+n_{\text{obs}}}+\mathbf{\hat{\beta}}_{n}^\text{T}\mathbf{\Sigma}_{n}^{-1}\mathbf{\hat{\beta}}_{n}">
 * <img src="https://latex.codecogs.com/svg.latex?(n+n_{\text{obs}})_{\text{d.o.f.}}=n_{\text{d.o.f.}}-n_\text{obs}">
@@ -54,7 +54,7 @@ When including data weights to our training procedure, all we have to do is adju
 * <img src="https://latex.codecogs.com/svg.latex?\mathbf{M}_{n+n_{\text{obs}}}=\mathbf{M}_{n}+\mathbf{M}^\text{T}\mathbf{W}\mathbf{M}"> 
 * which is equivalent to:
   * <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{X}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{X}_{n}+\mathbf{X}^{\text{T}}\mathbf{W}\mathbf{X}">
-  * <img src="https://latex.codecogs.com/svg.latex?\mathbf{y}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{y}_{n}^\text{T}\mathbf{y}+\mathbf{y}^{\text{T}}\mathbf{W}\mathbf{y}">
+  * <img src="https://latex.codecogs.com/svg.latex?\mathbf{y}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{y}_{n}^\text{T}\mathbf{y}_{n}+\mathbf{y}^{\text{T}}\mathbf{W}\mathbf{y}">
   * <img src="https://latex.codecogs.com/svg.latex?\mathbf{X}_{n+n_{\text{obs}}}^\text{T}\mathbf{y}_{n+n_{\text{obs}}}=\mathbf{X}_{n}^\text{T}\mathbf{y}_{n}+\mathbf{X}^{\text{T}}\mathbf{W}\mathbf{y}">
 
 
