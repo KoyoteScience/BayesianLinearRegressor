@@ -1,4 +1,4 @@
-# BayesianLinearRegression
+# Sequential Bayesian Linear Regression
 
 ## Example Usage:
 
