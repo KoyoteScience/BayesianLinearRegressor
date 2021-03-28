@@ -34,6 +34,8 @@ class BayesLinearRegressor:
         :return: None
         '''
 
+        # see http://www.biostat.umn.edu/~ph7440/pubh7440/BayesianLinearModelGoryDetails.pdf for gory details
+    
         # clear the frozen parameter sample since we are updating the parameter distributions
         self.frozen_parameter_sample = None
 
@@ -60,10 +62,14 @@ class BayesLinearRegressor:
 
         moment_of_X = self.moment_matrix[:-1, :-1]
         moment_of_X_and_Y = self.moment_matrix[:-1, -1]
+        moment_of_X_and_Y_update_term = moment_matrix_update_term[:-1, -1]
         inverted_covariance_matrix = moment_of_X + self.regularization_matrix
         covariance_matrix = np.linalg.inv(inverted_covariance_matrix)
 
+        # these two statements are equivalent, so I choose the simpler one, although the latter
+        #   one is more consistent with the notation I come across in the literature
         self.beta_means = covariance_matrix @ (moment_of_X_and_Y)
+        # self.beta_means = covariance_matrix @ (inverted_covariance_matrix_before @ beta_means_before + moment_of_X_and_Y_update_term)
 
         if self.number_of_updates > len(covariance_matrix) - 1:
             self.residual_sum_squares += (
