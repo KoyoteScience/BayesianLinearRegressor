@@ -20,6 +20,8 @@ class BayesLinearRegressor:
         self.number_of_updates = 0
         self.residual_sum_squares = 0
         self.moment_matrix = np.eye(number_of_features + 2) * 0.0 # + 2 for the intercept and the output
+        self.regularization_matrix = np.eye(self.number_of_features + 1) / self.alpha
+        self.regularization_matrix[0,0] = 0 # we don't regularize the intercept term
         
     def partial_fit(self, X, Y, W=None, reverse=False):
         '''
@@ -36,7 +38,7 @@ class BayesLinearRegressor:
         
         moment_of_X_before = self.moment_matrix[:-1, :-1]
         beta_means_before = self.beta_means.copy()
-        inverted_covariance_matrix_before = moment_of_X_before + np.eye(self.number_of_features + 1) / self.alpha
+        inverted_covariance_matrix_before = moment_of_X_before + self.regularization_matrix
 
         # Here we concatenate the intercept input value (constant 1), the input vector, and the output value:
         rank_n_obs_update_matrix = np.array([[1] + row + output for row, output in zip(X.tolist(), Y.tolist())])
@@ -45,7 +47,7 @@ class BayesLinearRegressor:
             moment_matrix_update_term = rank_n_obs_update_matrix.T @ rank_n_obs_update_matrix
         else:
             moment_matrix_update_term = rank_n_obs_update_matrix.T @ np.diag(W.tolist()) @ rank_n_obs_update_matrix
-            
+
         if not reverse:
             self.moment_matrix += moment_matrix_update_term
             moment_of_Y_update_term = Y.T @ Y
@@ -57,13 +59,11 @@ class BayesLinearRegressor:
         
         moment_of_X = self.moment_matrix[:-1, :-1]
         moment_of_X_and_Y = self.moment_matrix[:-1, -1]
-        regularization_matrix = np.eye(self.number_of_features + 1) / self.alpha
-        regularization_matrix[0,0] = 0 # we don't regularize the intercept term
-        inverted_covariance_matrix = moment_of_X + regularization_matrix
-        
+        inverted_covariance_matrix = moment_of_X + self.regularization_matrix
         covariance_matrix = np.linalg.inv(inverted_covariance_matrix)
-        
-        self.beta_means = covariance_matrix @ moment_of_X_and_Y
+
+        self.beta_means = covariance_matrix @ (moment_of_X_and_Y)
+
         if self.number_of_updates > len(covariance_matrix) - 1:
             self.residual_sum_squares += (
                     moment_of_Y_update_term -
